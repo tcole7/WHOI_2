@@ -70,3 +70,9 @@ ggplot(data = acadia) +
   theme_bw()
 ```
 
+# Bar Charts
+
+```{r}
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
+  geom_bar(stat = "identity)
+
