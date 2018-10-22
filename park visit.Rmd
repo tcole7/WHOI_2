@@ -1,0 +1,57 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r}
+# install and load tidyverse
+install.packages("tidyverse") # note on Windows and linux use double quotes
+library(tidyverse)
+
+#National Parks in California
+ca <- 
+read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/ca.csv") 
+
+#Acadia National Park
+acadia <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/acadia.csv")
+
+#Southeast US National Parks
+se <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/se.csv")
+
+#2016 Visitation for all Pacific West National Parks
+visit_16 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/visit_16.csv")
+
+#All Nationally designated sites in Massachusetts
+mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/mass.csv")
+
+```
+
+Start with California (`ca`) dataset
+
+```{r}
+head(ca)
+```
+visitation
+```{r}
+ggplot(data = ca) +
+  geom_point(aes(x = year, y = visitors, color = park_name))
+```
+
+```{r}
+ggplot(data = ca) +
+  geom_point(aes(x = year, y = visitors, color = park_name)) +
+  labs(x = "year",
+        y = "visitation")
+```
+
+
+
+```{r}
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors, color = park_name)) +
+  labs(x = "year",
+        y = "visitation") +
+  theme_void()
+```
+
+        
