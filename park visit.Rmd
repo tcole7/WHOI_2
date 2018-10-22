@@ -54,4 +54,19 @@ ggplot(data = se) +
   theme_void()
 ```
 
-        
+# Faceting plots
+
+```{r}
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors)) +
+  facet_wrap(~state, scales = "free")
+```
+
+#Making line plots
+
+```{r}
+ggplot(data = acadia) +
+  geom_line(aes(x = year, y = visitors)) +
+  theme_bw()
+```
+
