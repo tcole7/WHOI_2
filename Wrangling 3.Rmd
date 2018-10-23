@@ -50,14 +50,31 @@ gapminder %>%
 
 ## `group_by()` groups!
 ```{r}
-gap_groupled <- gapminder %>%
+gap_grouped <- gapminder %>%
   group_by(country) %>% 
   mutate(gdp = pop * gdpPercap,
          max_gdp = max(gdp)) %>%
   ungroup()
-
-## wi
 ```
 
+
+## Joining data
+```{r}
+## read in the data. (same URL as yesterday, with co2.csv instead of gapminder.csv)
+co2 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/co2.csv")
+
+##explore
+co2 %>% head()
+co2 %>% dim()
+
+gap_2007 <- gapminder %>% 
+  filter(year == 2007)
+
+gap_2007 %>% dim() #142 obs
+
+##left join gap_2007 to co2
+lj <- left_join(gap_2007, co2, by = "country")
+
+```
 
 
