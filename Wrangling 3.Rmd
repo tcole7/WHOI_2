@@ -77,4 +77,49 @@ lj <- left_join(gap_2007, co2, by = "country")
 
 ```
 
+```{r}
+library(tidyverse)
+gap_wide <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv')
+```
+
+## tidyr::gather()
+```{r}
+gap_long <- gap_wide %>% 
+  gather(key = obstype_year,
+         value = obs_values,
+         -continent, -country)
+
+```
+
+```{r}
+gap_long <- gap_wide %>% 
+  gather(key = obstype_year,
+         value = obs_values,
+         -continent, -country) %>% 
+  separate(obstype_year,
+           into = c("obs_type", "year"),
+           sep = "_",
+           convert = TRUE)
+```
+
+
+##plot long data
+```{r}
+canada_df <- gap_long %>% 
+  filter(country == "Canada",
+         obs_type == "lifeExp")
+
+ggplot(data = canada_df, aes(x = year, y = obs_values))+
+  geom_line()
+```
+
+
+```{r}
+life_df <- gap_long %>% 
+  filter(obs_type == "lifeExp",
+         continent == "Americas")
+
+ggplot(data = life_df, aes(x = year, y = obs_values, color = country))+
+  geom_line()
+```
 
